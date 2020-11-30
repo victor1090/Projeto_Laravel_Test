@@ -38,3 +38,6 @@ Route::get('/', function () {
 */
 
 Route::resource('usuarios', TesteController::class)->names('user')->parameters(['usuarios' => 'user']);
+
+Route::get('artigo/NewPoster', [TesteController::class,'addForm'])->name('formPosterAdd');
+Route::post('artigo/addForm', [TesteController::class,'debug'])->name('debug');

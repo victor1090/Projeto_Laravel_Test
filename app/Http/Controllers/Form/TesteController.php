@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Form;
 
 use App\Http\Controllers\Controller;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -65,5 +66,23 @@ class TesteController extends Controller
     {
         $user->delete();
         return redirect()->route('user.index');
+    }
+
+    public function debug(Request $request)
+    {
+        var_dump($request->except('_token'));
+
+        $post = new Post();
+        //$post->title = $request->title;
+        //$post->author = $request->author;
+        //$post->subtitle = $request->subtitle;
+        //$post->content =$request->content;
+        //$post->save();
+        $post->create($request->except((['_token']))); //usando Fillable no Post.php
+    }
+
+    public function addForm()
+    {
+        return view('formPoster');
     }
 }
